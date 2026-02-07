@@ -1,0 +1,58 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+.container {
+    text-align: center;
+}
+
+.main-photo {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.options-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.option-btn {
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease; /* This makes the resizing smooth */
+    background-color: #007bff;
+    color: white;
+}
+
+/* Logic for the "Bigger" button */
+.bigger {
+    transform: scale(1.5);
+    background-color: #28a745;
+}
+
+/* Logic for the "Smaller" button */
+.smaller {
+    transform: scale(0.7);
+    opacity: 0.6;
+}
+
+.hidden {
+    display: none;
+}
+
+#result-message h1 {
+    font-size: 3rem;
+    color: #ff4757;
+}

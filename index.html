@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+    <img src="https://picsum.photos/300/200" alt="Placeholder" class="main-photo">
+    
+    <h2 class="question">Do you like this photo?</h2>
+
+    <div class="options-container" id="options-wrapper">
+        <button id="left-btn" class="option-btn">Yes, it's great!</button>
+        <button id="right-btn" class="option-btn">I'm done here</button>
+    </div>
+
+    <div id="result-message" class="hidden">
+        <h1>YAY! 🎉</h1>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
