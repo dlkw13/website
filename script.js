@@ -14,12 +14,17 @@ let yesScale = 1;
 let noScale = 1;
 
 // 1. Verification Step
+// 1. Verification Step
 verifyBtn.addEventListener('click', () => {
-    if (nameInput.value.trim() !== "") {
+    const enteredName = nameInput.value.trim();
+    const correctPhrase = "dumo nathan rence lim"; // <--- CHANGE THIS TO YOUR EXACT PHRASE
+
+    // We use .toLowerCase() so it doesn't matter if they use capital letters or not
+    if (enteredName.toLowerCase() === correctPhrase.toLowerCase()) {
         step1.classList.add('hidden');
         step2.classList.remove('hidden');
     } else {
-        alert("Please enter a name to proceed!");
+        alert("Wrong answer! Please type out your full name");
     }
 });
 
