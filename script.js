@@ -66,7 +66,7 @@ leftBtn.addEventListener('click', () => {
 
     // Make sure Step 3 shows the second photo
     const finalImg = step3.querySelector('.main-photo');
-    finalImg.src = "happy.webp"; 
+    finalImg.src = "sticker2.webp"; 
 
     // Now we call the function defined below
     triggerConfetti();
