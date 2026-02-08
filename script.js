@@ -52,7 +52,7 @@ leftBtn.addEventListener('click', () => {
 
     // Swap to your second photo (pic2)
     const mainImg = document.getElementById('main-image');
-    mainImg.src = "happy.webp"; 
+    mainImg.src = "sticker2.webp"; 
 
     // Launch Continuous Confetti
     var duration = 5 * 1000; // 5 seconds
