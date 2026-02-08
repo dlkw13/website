@@ -46,19 +46,6 @@ rightBtn.addEventListener('click', () => {
     }
 });
 
-// 3. "Yes" Button Logic (Step 3 & Confetti)
-leftBtn.addEventListener('click', () => {
-    step2.classList.add('hidden');
-    step3.classList.remove('hidden');
-
-    // Make sure Step 3 shows the second photo
-    // We use a different selector here to find the image in Step 3
-    const finalImg = step3.querySelector('.main-photo');
-    finalImg.src = "sticker2.webp"; 
-
-    triggerConfetti(); // This calls your confetti function
-});
-
 // 3. "Yes" Button Logic
 leftBtn.addEventListener('click', () => {
     step2.classList.add('hidden');
