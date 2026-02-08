@@ -13,18 +13,21 @@ const statusText = document.getElementById('status-text');
 let yesScale = 1;
 let noScale = 1;
 
-// 1. Verification Step
-// 1. Verification Step
+// 1. Verification Step Logic
 verifyBtn.addEventListener('click', () => {
     const enteredName = nameInput.value.trim();
-    const correctPhrase = "dumo nathan rence lim"; // <--- CHANGE THIS TO YOUR EXACT PHRASE
+    
+    // CHANGE THIS: Put the exact name or phrase you want here
+    const secretPhrase = "dumo nathan rence lim"; 
 
-    // We use .toLowerCase() so it doesn't matter if they use capital letters or not
-    if (enteredName.toLowerCase() === correctPhrase.toLowerCase()) {
-        step1.classList.add('hidden');
-        step2.classList.remove('hidden');
+    // This checks if the name matches (ignoring capital letters)
+    if (enteredName.toLowerCase() === secretPhrase.toLowerCase()) {
+        step1.classList.add('hidden'); // Hides the login
+        step2.classList.remove('hidden'); // Shows the Valentine question
     } else {
-        alert("Wrong answer! Please type out your full name");
+        // Optional: Add a little personality to the error
+        alert("Wrong answer! Please enter your full name :)");
+        nameInput.value = ""; // Clears the box for a retry
     }
 });
 
