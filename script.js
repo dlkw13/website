@@ -33,55 +33,67 @@ verifyBtn.addEventListener('click', () => {
 
 // 2. "No" Button Logic (Shrink No, Grow Yes)
 rightBtn.addEventListener('click', () => {
-    statusText.innerText = "Are you sure?";
-    
+    // Keep the question the same, just grow/shrink buttons
     yesScale += 0.5;
     noScale -= 0.15;
 
     leftBtn.style.transform = `scale(${yesScale})`;
     rightBtn.style.transform = `scale(${noScale})`;
 
-    if (noScale <= 0.2) rightBtn.style.opacity = "0"; // Almost hides the button if they keep clicking
+    // Prevents the "No" button from disappearing completely
+    if (noScale <= 0.2) {
+        rightBtn.style.opacity = "0.5"; 
+    }
 });
 
-// 3. "Yes" Button Logic (The Big Finale)
+// 3. "Yes" Button Logic (Step 3 & Confetti)
 leftBtn.addEventListener('click', () => {
-    // Move to Step 3
     step2.classList.add('hidden');
     step3.classList.remove('hidden');
 
-    // Swap to your second photo (pic2)
-    const mainImg = document.getElementById('main-image');
-    mainImg.src = "sticker2.webp"; 
+    // Make sure Step 3 shows the second photo
+    // We use a different selector here to find the image in Step 3
+    const finalImg = step3.querySelector('.main-photo');
+    finalImg.src = "sticker2.webp"; 
 
-    // Launch Continuous Confetti
-    var duration = 5 * 1000; // 5 seconds
-    var animationEnd = Date.now() + duration;
-    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-    }
-
-    var interval = setInterval(function() {
-        var timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-            return clearInterval(interval);
-        }
-
-        var particleCount = 50 * (timeLeft / duration);
-        
-        // Confetti shooting from the left
-        confetti(Object.assign({}, defaults, { 
-            particleCount, 
-            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
-        }));
-        
-        // Confetti shooting from the right
-        confetti(Object.assign({}, defaults, { 
-            particleCount, 
-            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
-        }));
-    }, 250);
+    triggerConfetti(); // This calls your confetti function
 });
+
+// 3. "Yes" Button Logic
+leftBtn.addEventListener('click', () => {
+    step2.classList.add('hidden');
+    step3.classList.remove('hidden');
+
+    // Make sure Step 3 shows the second photo
+    const finalImg = step3.querySelector('.main-photo');
+    finalImg.src = "happy.webp"; 
+
+    // Now we call the function defined below
+    triggerConfetti();
+});
+
+// The Confetti Function
+function triggerConfetti() {
+    var end = Date.now() + (5 * 1000); // 5 seconds of confetti
+
+    (function frame() {
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+        });
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+}
