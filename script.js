@@ -46,31 +46,42 @@ rightBtn.addEventListener('click', () => {
 
 // 3. "Yes" Button Logic (The Big Finale)
 leftBtn.addEventListener('click', () => {
+    // Move to Step 3
     step2.classList.add('hidden');
     step3.classList.remove('hidden');
 
-    mainImg.src = "sticker2.webp";
+    // Swap to your second photo (pic2)
+    const mainImg = document.getElementById('main-image');
+    mainImg.src = "happy.webp"; 
 
-    // Continuous Confetti Effect
-    var end = Date.now() + (5 * 1000);
-    (function frame() {
-        confetti({
-            particleCount: 3,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
-            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
-        });
-        confetti({
-            particleCount: 3,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 },
-            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
-        });
+    // Launch Continuous Confetti
+    var duration = 5 * 1000; // 5 seconds
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    var interval = setInterval(function() {
+        var timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
         }
-    }());
+
+        var particleCount = 50 * (timeLeft / duration);
+        
+        // Confetti shooting from the left
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+        }));
+        
+        // Confetti shooting from the right
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+        }));
+    }, 250);
 });
