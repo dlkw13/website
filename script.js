@@ -26,7 +26,7 @@ verifyBtn.addEventListener('click', () => {
         step2.classList.remove('hidden'); // Shows the Valentine question
     } else {
         // Optional: Add a little personality to the error
-        alert("Wrong answer! Please enter your full name :)");
+        alert("Wrong Answer!");
         nameInput.value = ""; // Clears the box for a retry
     }
 });
