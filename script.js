@@ -1,29 +1,68 @@
+// Navigation Elements
+const step1 = document.getElementById('step-1');
+const step2 = document.getElementById('step-2');
+const step3 = document.getElementById('step-3');
+
+// Logic Elements
+const verifyBtn = document.getElementById('verify-btn');
+const nameInput = document.getElementById('name-input');
 const leftBtn = document.getElementById('left-btn');
 const rightBtn = document.getElementById('right-btn');
-const optionsWrapper = document.getElementById('options-wrapper');
-const resultMessage = document.getElementById('result-message');
+const statusText = document.getElementById('status-text');
 
-// Left Button Logic: Grow left, shrink right
-leftBtn.addEventListener('click', () => {
-    leftBtn.classList.add('bigger');
-    leftBtn.classList.remove('smaller');
-    
-    rightBtn.classList.add('smaller');
-    rightBtn.classList.remove('bigger');
+let yesScale = 1;
+let noScale = 1;
+
+// 1. Verification Step
+verifyBtn.addEventListener('click', () => {
+    if (nameInput.value.trim() !== "") {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+    } else {
+        alert("Please enter a name to proceed!");
+    }
 });
 
-// Right Button Logic: Clear and Confetti
+// 2. "No" Button Logic (Shrink No, Grow Yes)
 rightBtn.addEventListener('click', () => {
-    // Hide the buttons
-    optionsWrapper.classList.add('hidden');
+    statusText.innerText = "Are you sure?";
     
-    // Show the Yay message
-    resultMessage.classList.remove('hidden');
+    yesScale += 0.5;
+    noScale -= 0.15;
 
-    // Fire Confetti!
-    confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
+    leftBtn.style.transform = `scale(${yesScale})`;
+    rightBtn.style.transform = `scale(${noScale})`;
+
+    if (noScale <= 0.2) rightBtn.style.opacity = "0"; // Almost hides the button if they keep clicking
+});
+
+// 3. "Yes" Button Logic (The Big Finale)
+leftBtn.addEventListener('click', () => {
+    step2.classList.add('hidden');
+    step3.classList.remove('hidden');
+
+    mainImg.src = "sticker2.webp";
+
+    // Continuous Confetti Effect
+    var end = Date.now() + (5 * 1000);
+    (function frame() {
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+        });
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 });
