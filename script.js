@@ -18,7 +18,7 @@ verifyBtn.addEventListener('click', () => {
     const enteredName = nameInput.value.trim();
     
     // CHANGE THIS: Put the exact name or phrase you want here
-    const secretPhrase = "dumo nathan rence lim"; 
+    const secretPhrase = "tam jiahui";
 
     // This checks if the name matches (ignoring capital letters)
     if (enteredName.toLowerCase() === secretPhrase.toLowerCase()) {
